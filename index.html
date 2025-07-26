@@ -25,6 +25,9 @@
       text-align: center;
       color: #0d6efd;
       margin-bottom: 1rem;
+      display: flex; /* To align icon with title */
+      align-items: center;
+      justify-content: center;
     }
     p.description {
       text-align: center;
@@ -42,9 +45,9 @@
       margin-bottom: 1.5rem;
       border: 1px solid #ccc;
       border-radius: 8px;
-      box-sizing: border-box; /* Added for better consistency */
+      box-sizing: border-box; 
       font-size: 1rem;
-      font-family: 'Vazirmatn', sans-serif; /* Ensure font consistency */
+      font-family: 'Vazirmatn', sans-serif;
     }
     textarea {
       resize: vertical;
@@ -58,9 +61,6 @@
       margin-right: 1rem;
       display: block;
     }
-    .section {
-      margin-top: 2rem;
-    }
     button[type="submit"] {
       background: #0d6efd;
       color: white;
@@ -70,69 +70,117 @@
       border-radius: 12px;
       cursor: pointer;
       width: 100%;
-      margin-top: 1rem; /* Added margin */
+      margin-top: 1rem;
     }
     button[type="submit"]:hover {
       background: #0b5ed7;
     }
     
-    /* --- STYLES FOR THE NEW AI DEMO --- */
-    .ai-demo-container {
-      background-color: #eef7ff;
-      border: 1px dashed #0d6efd;
-      border-radius: 12px;
-      padding: 1.5rem;
-      margin: 2rem 0;
-    }
-    .ai-demo-container h3 {
-      margin-top: 0;
-      color: #0d6efd;
-      text-align: center;
-    }
-    #ai-demo-btn {
-      background: #198754;
-      color: white;
-      padding: 0.75rem 1.5rem;
-      font-size: 0.9rem;
-      border: none;
-      border-radius: 8px;
+    /* --- EASTER EGG: HAT STYLES --- */
+    #hat-trigger {
+      width: 28px;
+      height: 28px;
+      margin-right: 15px; /* RTL margin */
+      margin-left: 0;
       cursor: pointer;
-      width: auto; /* Override default button width */
-      display: block;
-      margin: 0 auto;
+      opacity: 0.7;
+      transition: all 0.3s ease;
+      animation: pulse 2s infinite ease-in-out;
     }
-    #ai-demo-btn:hover {
-      background: #146c43;
+    #hat-trigger:hover {
+      opacity: 1;
+      transform: scale(1.1);
     }
-    #ai-suggestion {
-      display: none; /* Hidden by default */
-      margin-top: 1rem;
-      padding: 1rem;
-      background: #d1e7dd;
-      border-left: 5px solid #198754;
-      border-radius: 8px;
-      color: #0f5132;
-      animation: fadeIn 0.5s ease-in-out;
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.08); }
+      100% { transform: scale(1); }
     }
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(-10px); }
-      to { opacity: 1; transform: translateY(0); }
+
+    .hat-modal-backdrop {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.7);
+      z-index: 999;
+      backdrop-filter: blur(5px);
     }
-    /* --- END OF AI DEMO STYLES --- */
+
+    .hat-modal-content {
+      position: fixed;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 90%;
+      max-width: 600px;
+      background: #111;
+      color: #0f0;
+      font-family: 'Courier New', Courier, monospace;
+      border-radius: 10px;
+      border: 1px solid #0f0;
+      box-shadow: 0 0 20px rgba(0, 255, 0, 0.3);
+      padding: 2rem;
+      z-index: 1000;
+      text-align: left;
+      direction: ltr; /* Important for terminal look */
+    }
+
+    .hat-modal-content .close-btn {
+      position: absolute;
+      top: 10px; right: 15px;
+      color: #0f0;
+      font-size: 2rem;
+      cursor: pointer;
+    }
+
+    #hat-boot-screen .line {
+      opacity: 0;
+      white-space: nowrap;
+      overflow: hidden;
+      animation: typing 2s steps(40, end) forwards;
+    }
+
+    #hat-boot-screen .line.cursor::after {
+      content: '_';
+      animation: blink-caret 0.75s step-end infinite;
+    }
+
+    @keyframes typing {
+      from { width: 0; opacity: 1; }
+      to { width: 100%; opacity: 1; }
+    }
+    @keyframes blink-caret {
+      from, to { border-color: transparent }
+      50% { border-color: #0f0; }
+    }
+    
+    #hat-message-zone {
+      display: none;
+      margin-top: 1.5rem;
+      direction: rtl; /* Message should be RTL */
+      text-align: center;
+      font-family: 'Vazirmatn', sans-serif; /* Readable font for message */
+      font-size: 1.1rem;
+      line-height: 1.8;
+      color: #6dff6d; /* Lighter green for readability */
+    }
+    /* --- END OF EASTER EGG STYLES --- */
 
   </style>
 </head>
 <body>
   <div class="form-container">
-    <h1>فرم نیازسنجی ابزارهای نوین و هوش مصنوعی</h1>
+    <h1>
+      <!-- 1. THE TRIGGER ICON for the HAT Easter Egg -->
+      <img id="hat-trigger" src="https://api.iconify.design/mdi:brain.svg?color=%230d6efd" alt="یک راز کوچک">
+      فرم نیازسنجی ابزارهای نوین و هوش مصنوعی
+    </h1>
     <p class="description">در راستای ارتقای بهره‌وری، به‌روزرسانی ابزارهای مورد استفاده، و تسهیل فعالیت‌های روزمره در واحدهای مختلف، قصد داریم نیازها و چالش‌های کاری را بررسی کرده و راهکارهایی مناسب (اعم از ابزارهای هوش مصنوعی، اتوماسیون، سامانه‌های پشتیبان و ...) طراحی و ارائه کنیم.
-لطفاً با دقت به سؤالات زیر پاسخ دهید تا تصویری دقیق از نیازهای فعلی و فرصت‌های بهبود فراهم گردد.
+لطفاً با دقت به سؤالات زیر پاسخ دهید تا تصویری دقیق از نیازهای فعلی و فرصت‌های بهبود فراهم گردد.</p>
 
-</p>
-
-    <!-- STEP 1: Formspree Integration -->
+    <!-- The original form connected to Formspree -->
     <form action="https://formspree.io/f/manboann" method="POST">
-      
       <label>نام واحد</label>
       <input type="text" name="unit" required>
 
@@ -147,8 +195,6 @@
 
       <label for="repetitive_tasks">کدام فعالیت‌ها زمان‌بر، پرخطا یا خسته‌کننده هستند؟</label>
       <textarea name="repetitive_tasks" id="repetitive_tasks"></textarea>
-
-
 
       <label for="automation_opportunities">آیا فعالیت‌هایی در واحد شما وجود دارد که مستعد اتوماسیون باشند؟ (اگر بله، لطفاً مثال بزنید)</label>
       <textarea name="automation_opportunities" id="automation_opportunities"></textarea>
@@ -194,30 +240,83 @@
     </form>
   </div>
 
-  <!-- STEP 3: The JavaScript to power the AI Demo -->
+  <!-- 2. THE MODAL for HAT Easter Egg (HIDDEN BY DEFAULT) -->
+  <div id="hat-modal-backdrop" class="hat-modal-backdrop">
+    <div id="hat-modal" class="hat-modal-content">
+      <span class="close-btn" onclick="closeHAT()">&times;</span>
+      
+      <!-- Screen 1: Boot Sequence -->
+      <div id="hat-boot-screen">
+        <!-- Lines will be populated by JavaScript -->
+      </div>
+      
+      <!-- Screen 2: The Final Message -->
+      <div id="hat-message-zone">
+        <p>
+          نترسید!
+          <br>
+          این فقط یک راز کوچک از طرف تیم مارکتینگ «هستی آرین تامین» است.
+          <br>
+          این دقیقاً نشان می‌دهد که چرا همه‌ی ما باید با فرصت‌ها و ریسک‌های هوش مصنوعی آشنا شویم.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3. THE JAVASCRIPT LOGIC for HAT -->
   <script>
-    function generateAISuggestion() {
-      const userInput = document.getElementById('ai-demo-input').value.toLowerCase();
-      const suggestionBox = document.getElementById('ai-suggestion');
-      let suggestionText = '';
+    const trigger = document.getElementById('hat-trigger');
+    const modalBackdrop = document.getElementById('hat-modal-backdrop');
+    const bootScreen = document.getElementById('hat-boot-screen');
+    const messageZone = document.getElementById('hat-message-zone');
 
-      if (userInput.includes('گزارش') || userInput.includes('خلاصه') || userInput.includes('تحلیل')) {
-        suggestionText = '<strong>پیشنهاد هوش مصنوعی:</strong> یک ابزار هوشمند می‌تواند این گزارش‌ها را در چند ثانیه خلاصه کند، نکات کلیدی را استخراج کرده و حتی نمودارهای مرتبط را برای ارائه بهتر پیشنهاد دهد. این کار باعث صرفه‌جویی در زمان و افزایش دقت می‌شود.';
-      } else if (userInput.includes('ایمیل') || userInput.includes('پاسخ') || userInput.includes('مکاتبات')) {
-        suggestionText = '<strong>پیشنهاد هوش مصنوعی:</strong> یک دستیار هوشمند می‌تواند پیش‌نویس پاسخ‌های حرفه‌ای برای ایمیل‌های تکراری را تهیه کند، لحن متن را رسمی‌تر کرده و اشتباهات نگارشی را به صورت خودکار تصحیح نماید.';
-      } else if (userInput.includes('داده') || userInput.includes('ورود اطلاعات') || userInput.includes('دیتا')) {
-        suggestionText = '<strong>پیشنهاد هوش مصنوعی:</strong> ابزارهای اتوماسیون (RPA) می‌توانند فرآیند ورود دستی داده‌ها از یک سیستم به سیستم دیگر را به طور کامل خودکار کنند. این کار خطا را به صفر رسانده و زمان کارکنان را برای کارهای مهم‌تر آزاد می‌کند.';
-      } else if (userInput.includes('جلسه') || userInput.includes('یادداشت')) {
-        suggestionText = '<strong>پیشنهاد هوش مصنوعی:</strong> ابزارهای هوشمند می‌توانند صدای جلسات را به متن تبدیل کرده، خلاصه‌ای از تصمیمات و وظایف تعریف‌شده (Action Items) را استخراج کنند و به صورت خودکار برای اعضا ارسال نمایند.';
-      } else if (userInput.trim() === '') {
-        suggestionText = 'لطفاً یک فعالیت را در کادر بالا بنویسید تا پیشنهادی دریافت کنید.';
-      }
-      else {
-        suggestionText = '<strong>پیشنهاد هوش مصنوعی:</strong> برای وظایفی مانند این، ابزارهای هوشمند می‌توانند با خودکارسازی مراحل تکراری، ایجاد پیش‌نویس محتوا، و یا تحلیل سریع اطلاعات، به شما کمک کنند تا روی بخش‌های خلاقانه و تصمیم‌گیری تمرکز کنید.';
-      }
+    trigger.addEventListener('click', activateHAT);
 
-      suggestionBox.innerHTML = suggestionText;
-      suggestionBox.style.display = 'block';
+    function activateHAT() {
+      // Reset state every time it's opened
+      bootScreen.innerHTML = '';
+      messageZone.style.display = 'none';
+      
+      modalBackdrop.style.display = 'block';
+
+      // The new boot sequence text for HAT
+      const bootLines = [
+        "Initializing HAT Core v1.0...",
+        "Loading marketing modules...",
+        "Calibrating persuasive matrix...",
+        "Connection to internal network established.",
+        "System Online. Hello.",
+      ];
+
+      let delay = 0;
+      bootLines.forEach((line, index) => {
+        setTimeout(() => {
+          const p = document.createElement('p');
+          p.textContent = `> ${line}`;
+          p.className = 'line';
+          if (index === bootLines.length - 1) {
+            p.classList.add('cursor'); // Add blinking cursor to the last line
+          }
+          bootScreen.appendChild(p);
+        }, delay);
+        delay += 1000; // Time between lines
+      });
+      
+      // Show the final message after the boot sequence is complete
+      setTimeout(() => {
+        messageZone.style.display = 'block';
+      }, delay);
+    }
+
+    function closeHAT() {
+      modalBackdrop.style.display = 'none';
+    }
+    
+    // Close modal if user clicks on the dark backdrop
+    window.onclick = function(event) {
+      if (event.target == modalBackdrop) {
+        closeHAT();
+      }
     }
   </script>
 </body>
