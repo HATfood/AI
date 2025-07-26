@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>فرم نیازسنجی ابزارهای نوین و هوش مصنوعی</title>
+  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Vazirmatn', sans-serif;
+      background: #f8f9fa;
+      margin: 0;
+      padding: 2rem;
+      direction: rtl;
+    }
+    .form-container {
+      background: white;
+      border-radius: 16px;
+      max-width: 750px;
+      margin: 0 auto;
+      padding: 2rem;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    }
+    h1 {
+      text-align: center;
+      color: #0d6efd;
+      margin-bottom: 1rem;
+    }
+    p.description {
+      text-align: center;
+      color: #555;
+      margin-bottom: 2rem;
+    }
+    label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: bold;
+    }
+    input[type="text"], input[type="date"], textarea, select {
+      width: 100%;
+      padding: 0.75rem;
+      margin-bottom: 1.5rem;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      box-sizing: border-box; /* Added for better consistency */
+      font-size: 1rem;
+      font-family: 'Vazirmatn', sans-serif; /* Ensure font consistency */
+    }
+    textarea {
+      resize: vertical;
+      min-height: 80px;
+    }
+    .checkbox-group, .radio-group {
+      margin-bottom: 2rem;
+    }
+    .checkbox-group label, .radio-group label {
+      font-weight: normal;
+      margin-right: 1rem;
+      display: block;
+    }
+    .section {
+      margin-top: 2rem;
+    }
+    button[type="submit"] {
+      background: #0d6efd;
+      color: white;
+      padding: 1rem 2rem;
+      font-size: 1rem;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      width: 100%;
+      margin-top: 1rem; /* Added margin */
+    }
+    button[type="submit"]:hover {
+      background: #0b5ed7;
+    }
+    
+    /* --- STYLES FOR THE NEW AI DEMO --- */
+    .ai-demo-container {
+      background-color: #eef7ff;
+      border: 1px dashed #0d6efd;
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin: 2rem 0;
+    }
+    .ai-demo-container h3 {
+      margin-top: 0;
+      color: #0d6efd;
+      text-align: center;
+    }
+    #ai-demo-btn {
+      background: #198754;
+      color: white;
+      padding: 0.75rem 1.5rem;
+      font-size: 0.9rem;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      width: auto; /* Override default button width */
+      display: block;
+      margin: 0 auto;
+    }
+    #ai-demo-btn:hover {
+      background: #146c43;
+    }
+    #ai-suggestion {
+      display: none; /* Hidden by default */
+      margin-top: 1rem;
+      padding: 1rem;
+      background: #d1e7dd;
+      border-left: 5px solid #198754;
+      border-radius: 8px;
+      color: #0f5132;
+      animation: fadeIn 0.5s ease-in-out;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    /* --- END OF AI DEMO STYLES --- */
+
+  </style>
+</head>
+<body>
+  <div class="form-container">
+    <h1>فرم نیازسنجی ابزارهای نوین و هوش مصنوعی</h1>
+    <p class="description">لطفاً برای کمک به طراحی ابزارهای مناسب جهت بهبود عملکرد واحد خود، فرم زیر را با دقت تکمیل نمایید.</p>
+
+    <!-- STEP 1: Formspree Integration -->
+    <form action="https://formspree.io/f/manboann" method="POST">
+      
+      <label>نام واحد</label>
+      <input type="text" name="unit" required>
+
+      <label>نام و سمت پاسخ‌دهنده</label>
+      <input type="text" name="name_title" required>
+
+      <label>تاریخ تکمیل فرم</label>
+      <input type="date" name="date" required>
+
+      <label for="duties">سه مورد از وظایف یا فعالیت‌های اصلی و پرتکرار واحد را ذکر کنید</label>
+      <textarea name="duties" id="duties"></textarea>
+
+      <label for="repetitive_tasks">کدام فعالیت‌ها زمان‌بر، پرخطا یا خسته‌کننده هستند؟</label>
+      <textarea name="repetitive_tasks" id="repetitive_tasks"></textarea>
+
+
+
+      <label for="automation_opportunities">آیا فعالیت‌هایی در واحد شما وجود دارد که مستعد اتوماسیون باشند؟ (اگر بله، لطفاً مثال بزنید)</label>
+      <textarea name="automation_opportunities" id="automation_opportunities"></textarea>
+
+      <div class="checkbox-group">
+        <label>کدام‌یک از چالش‌های زیر در واحد شما وجود دارد؟ (چند مورد را می‌توانید انتخاب کنید)</label>
+        <label><input type="checkbox" name="challenges[]" value="delay_in_reporting"> تأخیر در گزارش‌دهی یا تحلیل داده‌ها</label>
+        <label><input type="checkbox" name="challenges[]" value="repetitive_work"> انجام کارهای تکراری و زمان‌بر</label>
+        <label><input type="checkbox" name="challenges[]" value="documentation_difficulty"> دشواری در تهیه مستندات یا محتوای رسمی</label>
+        <label><input type="checkbox" name="challenges[]" value="planning_difficulty"> سختی در برنامه‌ریزی یا پیگیری کارها</label>
+        <label><input type="checkbox" name="challenges[]" value="data_gathering_need"> نیاز به جمع‌آوری اطلاعات از منابع مختلف</label>
+        <label><input type="checkbox" name="challenges[]" value="other_challenges_checkbox"> سایر (لطفاً توضیح دهید)</label>
+        <textarea name="other_challenges_text" placeholder="در صورت انتخاب 'سایر'، اینجا توضیح دهید..."></textarea>
+      </div>
+
+      <div class="radio-group">
+        <label>آیا تاکنون از ابزارهای هوش مصنوعی یا اتوماسیون استفاده کرده‌اید؟</label>
+        <label><input type="radio" name="used_ai" value="yes"> بله</label>
+        <label><input type="radio" name="used_ai" value="no"> خیر</label>
+      </div>
+
+      <label for="ai_tools">در صورت استفاده، ابزار مورد نظر و کاربرد آن را ذکر کنید</label>
+      <input type="text" name="ai_tools" id="ai_tools">
+
+      <div class="checkbox-group">
+        <label>در کدام حوزه‌ها علاقه‌مند به استفاده از ابزارهای نوین هستید؟</label>
+        <label><input type="checkbox" name="interests[]" value="reporting_analysis"> تهیه گزارش و تحلیل داده</label>
+        <label><input type="checkbox" name="interests[]" value="planning_tracking"> برنامه‌ریزی و پیگیری فعالیت‌ها</label>
+        <label><input type="checkbox" name="interests[]" value="faq_documentation"> پاسخ به سوالات تکراری یا مستندات داخلی</label>
+        <label><input type="checkbox" name="interests[]" value="translation_rewriting"> ترجمه یا بازنویسی متون</label>
+        <label><input type="checkbox" name="interests[]" value="automation"> انجام خودکار کارهای تکراری</label>
+        <label><input type="checkbox" name="interests[]" value="learning_training"> یادگیری یا آموزش تخصصی</label>
+        <label><input type="checkbox" name="interests[]" value="other_interests"> سایر</label>
+      </div>
+
+      <label for="ideal_tool">اگر فقط یک ابزار می‌توانست به شما کمک کند، ترجیح می‌دهید چه کاری انجام دهد؟</label>
+      <textarea name="ideal_tool" id="ideal_tool"></textarea>
+
+      <label for="suggestions">پیشنهاد شما برای بهبود عملکرد واحد با ابزارهای هوشمند چیست؟</label>
+      <textarea name="suggestions" id="suggestions"></textarea>
+
+      <button type="submit">ارسال فرم</button>
+    </form>
+  </div>
+
+  <!-- STEP 3: The JavaScript to power the AI Demo -->
+  <script>
+    function generateAISuggestion() {
+      const userInput = document.getElementById('ai-demo-input').value.toLowerCase();
+      const suggestionBox = document.getElementById('ai-suggestion');
+      let suggestionText = '';
+
+      if (userInput.includes('گزارش') || userInput.includes('خلاصه') || userInput.includes('تحلیل')) {
+        suggestionText = '<strong>پیشنهاد هوش مصنوعی:</strong> یک ابزار هوشمند می‌تواند این گزارش‌ها را در چند ثانیه خلاصه کند، نکات کلیدی را استخراج کرده و حتی نمودارهای مرتبط را برای ارائه بهتر پیشنهاد دهد. این کار باعث صرفه‌جویی در زمان و افزایش دقت می‌شود.';
+      } else if (userInput.includes('ایمیل') || userInput.includes('پاسخ') || userInput.includes('مکاتبات')) {
+        suggestionText = '<strong>پیشنهاد هوش مصنوعی:</strong> یک دستیار هوشمند می‌تواند پیش‌نویس پاسخ‌های حرفه‌ای برای ایمیل‌های تکراری را تهیه کند، لحن متن را رسمی‌تر کرده و اشتباهات نگارشی را به صورت خودکار تصحیح نماید.';
+      } else if (userInput.includes('داده') || userInput.includes('ورود اطلاعات') || userInput.includes('دیتا')) {
+        suggestionText = '<strong>پیشنهاد هوش مصنوعی:</strong> ابزارهای اتوماسیون (RPA) می‌توانند فرآیند ورود دستی داده‌ها از یک سیستم به سیستم دیگر را به طور کامل خودکار کنند. این کار خطا را به صفر رسانده و زمان کارکنان را برای کارهای مهم‌تر آزاد می‌کند.';
+      } else if (userInput.includes('جلسه') || userInput.includes('یادداشت')) {
+        suggestionText = '<strong>پیشنهاد هوش مصنوعی:</strong> ابزارهای هوشمند می‌توانند صدای جلسات را به متن تبدیل کرده، خلاصه‌ای از تصمیمات و وظایف تعریف‌شده (Action Items) را استخراج کنند و به صورت خودکار برای اعضا ارسال نمایند.';
+      } else if (userInput.trim() === '') {
+        suggestionText = 'لطفاً یک فعالیت را در کادر بالا بنویسید تا پیشنهادی دریافت کنید.';
+      }
+      else {
+        suggestionText = '<strong>پیشنهاد هوش مصنوعی:</strong> برای وظایفی مانند این، ابزارهای هوشمند می‌توانند با خودکارسازی مراحل تکراری، ایجاد پیش‌نویس محتوا، و یا تحلیل سریع اطلاعات، به شما کمک کنند تا روی بخش‌های خلاقانه و تصمیم‌گیری تمرکز کنید.';
+      }
+
+      suggestionBox.innerHTML = suggestionText;
+      suggestionBox.style.display = 'block';
+    }
+  </script>
+</body>
+</html>
